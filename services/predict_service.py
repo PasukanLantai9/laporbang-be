@@ -1,5 +1,6 @@
 from utils.pothole_detector import detect_pothole
 from schemas.predict_schema import PredictResponse, GeminiPotholeResult
+from config import GEMINI_MODEL
 
 
 class PredictService:
@@ -15,6 +16,6 @@ class PredictService:
         )
 
         return PredictResponse(
-            model="gemini-1.5-flash",
+            model=GEMINI_MODEL,
             result=result
         )

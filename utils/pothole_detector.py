@@ -7,7 +7,10 @@ import requests
 import io
 from typing import Union
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+from config import GEMINI_MODEL
+from config import GEMINI_API_KEY
+
+genai.configure(api_key=GEMINI_API_KEY)
 
 def load_image(input_image) -> Image.Image:
     """
@@ -45,7 +48,7 @@ def detect_pothole(input_image: Union[str, bytes, Image.Image]):
     img = load_image(input_image)
 
     # Init model
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel(GEMINI_MODEL)
 
     prompt = """
     Analisis gambar ini dan jawab dalam format JSON:
