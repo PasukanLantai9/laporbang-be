@@ -1,12 +1,20 @@
 from utils.pothole_detector import detect_pothole
+from schemas.predict_schema import PredictResponse, GeminiPotholeResult
+
 
 class PredictService:
 
     @staticmethod
     def predict_image(file):
-        """
-        Hanya prediksi gambar, tidak menyimpan file.
-        """
-        # Langsung kirim file ke detect_pothole
-        result = detect_pothole(file)
-        return result
+        gemini_raw = detect_pothole(file)
+
+        result = GeminiPotholeResult(
+            ada_pothole=gemini_raw.get("ada_pothole", False),
+            jumlah_pothole=gemini_raw.get("jumlah_pothole", 0),
+            deskripsi=gemini_raw.get("deskripsi", "")
+        )
+
+        return PredictResponse(
+            model="gemini-1.5-flash",
+            result=result
+        )
