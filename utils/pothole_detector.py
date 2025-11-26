@@ -1,3 +1,5 @@
+import os
+
 import google.generativeai as genai
 from PIL import Image
 import json
@@ -5,7 +7,7 @@ import requests
 import io
 from typing import Union
 
-genai.configure(api_key="YOUR_API_KEY_HERE")
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def load_image(input_image) -> Image.Image:
     """
