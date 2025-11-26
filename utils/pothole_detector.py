@@ -45,7 +45,7 @@ def detect_pothole(input_image: Union[str, bytes, Image.Image]):
     img = load_image(input_image)
 
     # Init model
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.0-flash")
 
     prompt = """
     Analisis gambar ini dan jawab dalam format JSON:
